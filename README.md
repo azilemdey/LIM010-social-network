@@ -5,6 +5,7 @@ Bienvenida a tu primer proyecto del track de Frontend en Laboratoria.
 En este proyecto construirás una red social, cuya temáticas dejaremos a tu elección.
 
 Aquí algunas ideas para inspirarte:
+
 - Alimentación
 - Feminismo
 - Educación
@@ -101,7 +102,9 @@ El objetivo de usar Firestore en este proyecto, es que aprendes a manejar y pers
 
 ## Historias de Usuario
 
-* Como usuario nuevo debo poder crear una cuenta con email y password para poder iniciar sesion. Si el mail o password no es válido, al momento de logearme, debo poder ver un mensaje de error. Por otro lado, necesito también tener la opción de iniciar sesión con mi cuenta de Google o Facebook, **solo si estas usando firebase**.
+* Como usuario nuevo debo poder crear una cuenta con email y password válidos para poder iniciar sesion e ingresar a la red social.
+
+* Como usuario nuevo debo poder tener la opción de iniciar sesión con mi cuenta de Google o Facebook para ingresar a la red social sin necesidad de crear una cuenta de email válido.
 
 * Como usuario loggeado debo poder crear, guardar, modificar en el mismo lugar (in place) y eliminar una publicación (post) privada o pública, que puede ser una frase o una imagen.
 
