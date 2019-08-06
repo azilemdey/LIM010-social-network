@@ -73,7 +73,7 @@ A continuación te proporcionamos el layout (diseño) de la vista mobile y deskt
 
 En los proyectos anteriores solo has consumido (leído) datos, por ejemplo, a través de un archivo `json` o utilizando `fetch`.
 
-En este proyecto diseñarás la estructura de esos datos, la forma de consultarlos, actualizarlos, modificarlos y eliminarlos según los requerimiento del usuario. Para llevarlo a cabo utilizaras `Firestore` de `Firebase`.
+En este proyecto diseñarás la estructura de esos datos, la forma de consultarlos, actualizarlos, modificarlos y eliminarlos según los requerimiento del usuario. Para llevarlo a cabo utilizaras `Firestore` de `Firebase` o `LocalStogarge` una `Web Storage API`
 
 #### Firebase
 
@@ -97,11 +97,11 @@ El objetivo de usar Firestore en este proyecto, es que aprendes a manejar y pers
 
 * Ya te damos un diseño (layout) de la vista mobile y desktop, queremos que lo repliques a nivel *pixel perfect*, el contenido, paleta de colores y fuentes, depende de la temática que van a elegir como equipo. La implementación de ese layout deberá formar parte de la *definición de terminado* de tus historias de usuario.
 
-* Los test son **fundamentrales** y deberán formar parte de tu definición de terminado, te recomendamos que comiences a implementarlos desde el comienzo.
+* Los test son **fundamentales** y deberán formar parte de tu definición de terminado, te recomendamos que comiences a implementarlos desde el comienzo.
 
 ## Historias de Usuario
 
-* Como usuario nuevo debo poder crear una cuenta con email y password para poder iniciar sesion. Si el mail o password no es válido, al momento de logearme, debo poder ver un mensaje de error. Por otro lado, necesito también tener la opción de iniciar sesión con mi cuenta de Google o Facebook.
+* Como usuario nuevo debo poder crear una cuenta con email y password para poder iniciar sesion. Si el mail o password no es válido, al momento de logearme, debo poder ver un mensaje de error. Por otro lado, necesito también tener la opción de iniciar sesión con mi cuenta de Google o Facebook, **solo si estas usando firebase**.
 
 * Como usuario loggeado debo poder crear, guardar, modificar en el mismo lugar (in place) y eliminar una publicación (post) privada o pública, que puede ser una frase o una imagen.
 
@@ -121,6 +121,7 @@ El objetivo de usar Firestore en este proyecto, es que aprendes a manejar y pers
 ### DOM y Web APIs
 - [ ] Manipulación dinámica del DOM
 - [ ] History API
+- [ ] localStorage
 
 ### Javascript
 - [ ] Uso de callbacks
@@ -134,6 +135,7 @@ El objetivo de usar Firestore en este proyecto, es que aprendes a manejar y pers
 - [ ] Observables
 
 ### Testing
+- [ ] Testeo de tus funciones
 - [ ] Testeo asíncrono
 - [ ] Mocking
 
