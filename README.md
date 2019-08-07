@@ -17,7 +17,7 @@ Las **caraterísticas técnicas** de tu aplicación serán las siguientes:
 - Debe ser diseñada con un enfoque [mobile first](https://darwindigital.com/mobile-first-versus-responsive-web-design/) ([versión traducida](https://translate.google.com/translate?hl=&sl=auto&tl=es&u=https%3A%2F%2Fdarwindigital.com%2Fmobile-first-versus-responsive-web-design))
 - Debe permitir la persintencia de datos
   
-Para implementar tu aplicación usarás *HTML5*, *CCS3* o *SASS*, *Vanilla JavaScript(ES6+)* y *Firebase*.
+Para implementar tu aplicación usarás *HTML5*, *CCS3* o *SASS*, *Vanilla JavaScript(ES6+)*, *Firebase* o *LocalStogarge*
 
 ## Objetivo
 
@@ -114,7 +114,7 @@ El objetivo de usar Firestore en este proyecto, es que aprendes a manejar y pers
 
 * Al final debo poder ingresar a la red social y poder visualizar los datos de mi perfil creado o editarlos.
 
-* Te dejamos un ejemplo de cómo definir criterios de aceptación y definiciones de terminado para una H.U. Mu
+* Te dejamos un ejemplo de cómo definir criterios de aceptación y definiciones de terminado para una H.U. Si se te complica definirlas o no tienes idea de que considerar para cada H.U. es de gran ayuda revisar redes sociales como `facebok`, `twitter`, `instagram`, `devopedia` o la red social que más te guste y puedas evaluar qué consideran en cada funcionalidad para darla como terminada y aceptada.
 
     > Como usuario nuevo debo poder crear una cuenta con email y password para 
     > poder iniciar sesion. Por otro lado, necesito también tener la opción de 
@@ -205,7 +205,7 @@ En los proyectos anteriores hemos consumido (leído) datos, pero todavía no
 habíamos escrito datos (salvar cambios, crear datos, borrar, ...). En este
 proyecto tendrás que crear (salvar) nuevos datos, así como leer, actualizar y
 modificar datos existentes. Estos datos se podrán guardar de forma remota
-usando [Firestore](https://firebase.google.com/docs/firestore).
+usando [Firestore](https://firebase.google.com/docs/firestore) o utilizando 
 
 ### Autenticación y autorización
 
