@@ -11,3 +11,17 @@ display: flex;
 .hide{
     display: none;
 }
+
+ul,ol{
+    list-style: none;
+}
+
+.menu li a{
+    background-color: darkcyan;
+    color: white;
+    cursor: pointer;
+    text-decoration: none; 
+}
+.menu li ul {
+    display:none
+}

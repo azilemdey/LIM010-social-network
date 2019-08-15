@@ -21,7 +21,7 @@ textarea.addEventListener('keyup',()=>{
    saveBtn.addEventListener('click',()=>{
       const text = textarea.value;
       localStorage.setItem('saving',text);
-      textarea.disabled=true;
+      //textarea.disabled=true;
    })
 
  
