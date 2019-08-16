@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel=StyleSheet href="stylo.css" type="text/css">
+  <link rel=StyleSheet href="style.css" TYPE="text/css">
   <title>Social Network</title>
 </head>
 <body>
@@ -23,20 +23,16 @@
 
 <section id= "2nd-page" class="text">
 <form id="input-text">
-<textarea placeholder= "hasta 150 caracteres" cols="40" rows="5" id="post" name="texto" maxlength="151"></textarea>  
-</textarea>
-<!--<input type="button" id="save-text" value="GUARDAR">-->
-<div id="privacity" class="menu">
-  <ul>
-   <li><a href="">PUBLICAR</a></li>
-    <ul>
-      <li><a href=""> PUBLICO</a></li>
-      <li><a href=""> PRIVADO</a></li>
-      
-    </ul>   
-  </ul>
-</div>
+<textarea placeholder = "hasta 150 caracteres" cols="40" rows="5" id="post" name="texto" maxlength="151"></textarea>
+<input type="button" id="save-text" value="GUARDAR"> 
+<button type="button" id="edit-text"><img src="editar.png" class="pencil"></button>
+<button type="button" id="delete-text"><img src="borrar.png" class="pencil"></button>
 </form>
+<div id="impresion">
+  <textarea cols="40" rows="5" id="post1" name="texto" maxlength="151"></textarea>
+</div>
+<div>
+</div>
 
 </section>
 
