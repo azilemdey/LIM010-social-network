@@ -8,11 +8,13 @@ const inputWritePost = document.getElementById('post');
 const botonSavePost = document.getElementById('save-text');
 const editBtn = document.getElementById('edit-text');
 const deleteText = document.getElementById('delete-text');
+const printerPost=document.getElementById("printer-post");
 let arrPost = [];
+
 window.onload = () => {if(localStorage.getItem('post') !==null){const printer=JSON.parse(localStorage.getItem('post'));
-const publico = document.getElementById("post1");
-publico.innerHTML=printer[0];
-publico.disabled=true;}};
+for(let i=0;i<printer.length;i++){
+printerPost.innerHTML += `<textArea cols="40" rows="5" readonly name="texto" maxlength="151" class="post" id=${i}>${printer[i]}</textArea><button id=${i}>x</button>`
+}}};
 
 inputWritePost.addEventListener('keyup', () => {
   const numCaracteres = inputWritePost.value.length;
@@ -31,7 +33,6 @@ botonSavePost.addEventListener('click', () => {
     arrPost=text1.slice();
     arrPost.push(text);
     //arr3.push(text); 
-    inputWritePost.value = '';
     localStorage.setItem('post', JSON.stringify(arrPost));
     console.log(arrPost)
     //console.log(arr3);
@@ -39,22 +40,27 @@ botonSavePost.addEventListener('click', () => {
   else if(text !== ''){
       arrPost.push(text);
       localStorage.setItem('post', JSON.stringify(arrPost));
-      const publico = document.getElementById("post1");
-      publico.innerHTML=arrPost[0];
+      for(let i=0;i<arrPost.length;i++){
+      printerPost.innerHTML += `<div><textArea cols="40" rows="5" readonly name="texto" maxlength="151" class="post" id=${i}>${arrPost[i]}</textArea><button id=${i}>x</button></div>`
+      };
       inputWritePost.value = '';
-      publico.disabled=true;
       console.log(arrPost)
     }
 });
+
 
 editBtn.addEventListener('click', () => {
   textarea.disabled = false;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 });
 // guardar el texto en variable
 
-
+//const printerPost=document.getElementById("printer-post");
 deleteText.addEventListener('click', () => {
   alert('Estas seguro que quiere eliminar');
+localStorage.removeItem('saving');
+//for(let i=0;i<arrPost.length;i++){
+//printerPost.innerHTML += `<textArea cols="40" rows="5" readonly name="texto" maxlength="151" class="post" id=${i}>${arrPost[i]}</textArea><button id=${i}>x</button>`
+//}
   // localStorage.removeItem('saving');
 });
 
