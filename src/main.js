@@ -4,12 +4,14 @@
 // myFunction();
 
 // Delimitar el tamaño del texto
+
 const inputWritePost = document.getElementById('post');
 const botonSavePost = document.getElementById('save-text');
 const editBtn = document.getElementById('edit-text');
 const deleteText = document.getElementById('delete-text');
 const printerPost=document.getElementById("printer-post");
 let arrPost = [];
+
 
 window.onload = () => {if(localStorage.getItem('post') !==null){const printer=JSON.parse(localStorage.getItem('post'));
 for(let i=0;i<printer.length;i++){
@@ -64,6 +66,14 @@ localStorage.removeItem('saving');
   // localStorage.removeItem('saving');
 });
 
+tinymce.init({
+  selector: 'textarea',
+  plugins: 'lists media',
+  toolbar: 'addcomment showcomments casechange checklist code formatpainter insertfile pageembed permanentpen',
+  toolbar_drawer: 'floating',
+  tinycomments_mode: 'embedded',
+  tinycomments_author: 'Author name'
+});
 
 
 

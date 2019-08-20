@@ -4,3 +4,7 @@
 .post{
 text-align: left;
 }
+
+.hide{
+display: none;
+}
