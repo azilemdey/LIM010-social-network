@@ -107,6 +107,7 @@
 .btn-edit {
     display: flex;
     justify-content: center;
+    padding: 3%;
 }
   
  .hide{
