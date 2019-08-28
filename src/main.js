@@ -7,7 +7,8 @@
 
 const inputWritePost = document.getElementById('post');
 const botonSavePost = document.getElementById('save-text');
-const printerPost = document.getElementById("printer-post");
+let printerPost = document.getElementById("printer-post");
+const texto = document.getElementsByName("texto");
 let arrPost = [];
 
 window.onload = () => {
@@ -15,7 +16,7 @@ window.onload = () => {
     const printer = JSON.parse(localStorage.getItem('post'));
     for (let i = 0; i < printer.length; i++) {
 
-      printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" id=${i} width="70%" name="texto" readOnly maxlength="151" class="post">${printer[i]}</textArea>
+      printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readonly="readonly" maxlength="151">${printer[i]}</textArea>
     <div class="btn-edit"><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div>`;
       inputWritePost.value = '';
     }
@@ -42,7 +43,7 @@ botonSavePost.addEventListener('click', () => {
     const arrPostLocalStorage1 = JSON.parse(localStorage.getItem('post'));
     printerPost.innerHTML = '';
     for (let i = 0; i < arrPostLocalStorage1.length; i++) {
-      printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" id=${i} width="70%" name="texto"  readOnly  maxlength="151" class="post">${arrPostLocalStorage1[i]}</textArea>
+      printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" id=text${i} readonly="readonly"  maxlength="151">${arrPostLocalStorage1[i]}</textArea>
     <div class="btn-edit"><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div>`
     };
     inputWritePost.value = ''
@@ -50,39 +51,36 @@ botonSavePost.addEventListener('click', () => {
   else if (text !== '') {
     arrPost.push(text);
     localStorage.setItem('post', JSON.stringify(arrPost));
-    printerPost.innerHTML = `<div class="card"> <textArea class = "template-posts"cols="40" rows="5" width="70%" id=${0} name="texto" readOnly  maxlength="151" class="post">${arrPost[0]}</textArea>
-      <div class="btn-edit"><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${0} name="delete"></div></div>`;
+    printerPost.innerHTML = `<div class="card"> <textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" id=text${0} readonly="readonly"  maxlength="151">${arrPost[0]}</textArea>
+      <div class="btn-edit"><img src="editar.png" class="pencil" id=${0} name="edit"><img src="borrar.png" class="pencil" id=${0} name="delete"></div></div>`;
   };
   inputWritePost.value = ''
 });
 
 printerPost.addEventListener('click', (event) => {
-  const targetMethod = event.target;
-   if (targetMethod.name == "delete"){
+const targetMethod = event.target;
+ if (targetMethod.name == "delete"){
 const arrayIndex= targetMethod.id; 
 const arrayToDelete = JSON.parse(localStorage.getItem('post'));
 arrayToDelete.splice(arrayIndex, 1);
 localStorage.setItem('post',JSON.stringify(arrayToDelete));
 printerPost.innerHTML='';
 for(let i=0;i<arrayToDelete.length;i++){
-printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" maxlength="151" class="post">${arrayToDelete[i]}</textArea>
-<div class="btn-edit"><img src="editar.png" class="pencil" id=${i}><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div>`
-}else if(targetMethod.name == "edit")
-
-alert("jo")
-  }
-});
-
-
-/* alert('¿Estas seguro de eliminar esta publicacion?');
-const arrayToDelete = JSON.parse(localStorage.getItem('post'));
-arrayToDelete.splice(arrayIndex, 1);
-localStorage.setItem('post',JSON.stringify(arrayToDelete));
-printerPost.readOnly = true;
+printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readOnly maxlength="151">${arrayToDelete[i]}</textArea>
+<div class="btn-edit"><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div>`
+}}
+else if(targetMethod.name == "edit"){
+arrayToEdit= JSON.parse(localStorage.getItem('post'));
+const arrayIndex= targetMethod.id; 
+arrayToEdit[arrayIndex]= texto[arrayIndex].value;
+localStorage.setItem('post',JSON.stringify(arrayToEdit));
 printerPost.innerHTML='';
-for(let i=0;i<arrayToDelete.length;i++){
-printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" maxlength="151" class="post">${arrayToDelete[i]}</textArea>
-<div class="btn-edit"><img src="editar.png" class="pencil"><img src="borrar.png" class="pencil" id=${i}></div></div>`
-}; */
+for(let i=0;i<arrayToEdit.length;i++){
+printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readOnly maxlength="151">${arrayToEdit[i]}</textArea>
+<div class="btn-edit"><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div>`
+}
+texto[arrayIndex].removeAttribute('readOnly');
+};
+});
 
 
