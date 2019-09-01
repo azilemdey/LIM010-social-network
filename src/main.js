@@ -46,7 +46,7 @@ botonSavePost.addEventListener('click', () => {
     };
     inputWritePost.value = ''
   }
-  else if (text !== '') {
+  else if (text !== ''  ) {
     arrPost.push(text);
     localStorage.setItem('post', JSON.stringify(arrPost));
     printerPost.innerHTML = `<div class="card"> <textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" id=text${0} readonly="readonly"  maxlength="151">${arrPost[0]}</textArea>
@@ -71,8 +71,7 @@ printerPost.addEventListener('click', (event) => {
   else if (targetMethod.name == "edit") {
     texto[arrayIndex].removeAttribute('readOnly');
   }
-  else if (targetMethod.name == "save")
-  alert("hi");
+  else if (targetMethod.name == "save"){
   const arrayToEdit = JSON.parse(localStorage.getItem('post'));
   arrayToEdit[arrayIndex] = texto[arrayIndex].value;
   localStorage.setItem('post', JSON.stringify(arrayToEdit));
@@ -80,7 +79,13 @@ printerPost.addEventListener('click', (event) => {
   for (let i = 0; i < arrayToEdit.length; i++) {
     printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readOnly maxlength="151">${arrayToEdit[i]}</textArea>
 <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="guardar.png" class="pencil" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
-  }
+  }}
 });
-
+const previewFile = document.getElementById('input-file')
+previewFile.addEventListener('change', () => {
+  const file = previewFile.files[0];
+  console.log(file.name)
+    
+})
+  
 
