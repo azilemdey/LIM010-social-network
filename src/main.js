@@ -120,5 +120,5 @@ printerPost.addEventListener('click', (event) => {
       };
       reader.readAsDataURL(previewFile.files[0]);
      
+<
 }) */
-  
