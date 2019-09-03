@@ -24,36 +24,6 @@ btnRegister.addEventListener("click",()=>{
 }})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const inputWritePost = document.getElementById('post');
 const botonSavePost = document.getElementById('save-text');
 let printerPost = document.getElementById("printer-post");
@@ -65,7 +35,7 @@ window.onload = () => {
     const printer = JSON.parse(localStorage.getItem('post'));
     for (let i = 0; i < printer.length; i++) {
       printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readonly="readonly" maxlength="151">${printer[i]}</textArea>
-    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="guardar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div><div>`;
+    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div><div>`;
       inputWritePost.value = '';
     }
   }
@@ -81,25 +51,30 @@ inputWritePost.addEventListener('keyup', () => {
 });
 
 botonSavePost.addEventListener('click', () => {
-  const text = inputWritePost.value;
-  if (localStorage.getItem('post') !== null && text !== '') {
+  const textInput = inputWritePost.value;
+  const obj = {
+    text: textInput,
+    img: '',
+    fecha: new Date()
+  }
+  if (localStorage.getItem('post') !== null && textInput !== '') {
     let arrPostLocalStorage = JSON.parse(localStorage.getItem('post'));
     arr3 = arrPostLocalStorage.slice();
-    arr3.push(text);
+    arr3.push(obj);
     localStorage.setItem('post', JSON.stringify(arr3))
     const arrPostLocalStorage1 = JSON.parse(localStorage.getItem('post'));
     printerPost.innerHTML = '';
     for (let i = 0; i < arrPostLocalStorage1.length; i++) {
-      printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" id=text${i} readonly="readonly"  maxlength="151">${arrPostLocalStorage1[i]}</textArea>
-    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="guardar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
+      printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" id=text${i} readonly="readonly"  maxlength="151">${arrPostLocalStorage1[i].text}</textArea>
+    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
     };
     inputWritePost.value = ''
   }
-  else if (text !== ''  ) {
-    arrPost.push(text);
+  else if (textInput !== ''  ) {
+    arrPost.push(obj);
     localStorage.setItem('post', JSON.stringify(arrPost));
-    printerPost.innerHTML = `<div class="card"> <textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" id=text${0} readonly="readonly"  maxlength="151">${arrPost[0]}</textArea>
-    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${0}></div><div><img src="guardar.png" class="pencil hide" name="save" id=${0}><img src="editar.png" class="pencil" id=${0} name="edit"><img src="borrar.png" class="pencil" id=${0} name="delete"></div></div></div>`;
+    printerPost.innerHTML = `<div class="card"> <textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" id=text${0} readonly="readonly"  maxlength="151">${arrPost[0].text}</textArea>
+    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${0}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${0}><img src="editar.png" class="pencil" id=${0} name="edit"><img src="borrar.png" class="pencil" id=${0} name="delete"></div></div></div>`;
   };
   inputWritePost.value = ''
 });
@@ -114,7 +89,7 @@ printerPost.addEventListener('click', (event) => {
     printerPost.innerHTML = '';
     for (let i = 0; i < arrayToDelete.length; i++) {
       printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readOnly maxlength="151">${arrayToDelete[i]}</textArea>
-<div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="guardar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
+<div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
     }
   }
   else if (targetMethod.name == "edit") {
@@ -128,14 +103,21 @@ printerPost.addEventListener('click', (event) => {
   printerPost.innerHTML = '';
   for (let i = 0; i < arrayToEdit.length; i++) {
     printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readOnly maxlength="151">${arrayToEdit[i]}</textArea>
-<div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="guardar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
+<div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
   }}
 });
-const previewFile = document.getElementById('input-file')
-previewFile.addEventListener('change', () => {
-  const file = previewFile.files[0];
-  console.log(file.name)
-    
-})
-  
 
+    
+   /*  const previewFile = document.getElementById('input-file')
+    previewFile.addEventListener('change', () => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataURL = reader.result;
+        const preview = document.getElementById('posting-img');
+       preview.src = dataURL;
+       
+       console.log(preview.src)
+      };
+      reader.readAsDataURL(previewFile.files[0]);
+     
+}) */
