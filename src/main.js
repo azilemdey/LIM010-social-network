@@ -7,21 +7,26 @@
 const loggin=document.getElementById("loggin");
 const linkregistro=document.getElementById("linkregistro");
 const registro=document.getElementById("registro");
-const btnRegister=document.getElementById("register")
+const btnRegister=document.getElementById("register");
+const mailRegisterInput=document.getElementById("register-email");
 
 linkregistro.addEventListener("click",()=>{
 loggin.classList.add("hide");
 registro.classList.remove("hide");
 });
 
-btnRegister.addEventListener("click",()=>{
- const validarEmail=(correo)=> {
-  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.test(correo)){
-   alert("La dirección de email " + valor + " es correcta.");
+const validarEmail=(correo)=> {
+  const correoCorrecto=/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+  if (correoCorrecto.test(correo)){
+   alert("La dirección de email " + mailRegisterInput + " es correcta.");
   } else {
    alert("La dirección de email es incorrecta.");
   }
-}})
+}
+
+btnRegister.addEventListener("click",(e)=>{
+  validarEmail(mailRegisterInput.value);
+ });
 
 
 const inputWritePost = document.getElementById('post');
@@ -35,7 +40,8 @@ window.onload = () => {
     const printer = JSON.parse(localStorage.getItem('post'));
     for (let i = 0; i < printer.length; i++) {
       printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readonly="readonly" maxlength="151">${printer[i]}</textArea>
-    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div><div>`;
+    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil
+    " name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div><div>`;
       inputWritePost.value = '';
     }
   }
@@ -66,7 +72,7 @@ botonSavePost.addEventListener('click', () => {
     printerPost.innerHTML = '';
     for (let i = 0; i < arrPostLocalStorage1.length; i++) {
       printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" id=text${i} readonly="readonly"  maxlength="151">${arrPostLocalStorage1[i].text}</textArea>
-    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
+    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
     };
     inputWritePost.value = ''
   }
@@ -74,7 +80,7 @@ botonSavePost.addEventListener('click', () => {
     arrPost.push(obj);
     localStorage.setItem('post', JSON.stringify(arrPost));
     printerPost.innerHTML = `<div class="card"> <textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" id=text${0} readonly="readonly"  maxlength="151">${arrPost[0].text}</textArea>
-    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${0}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${0}><img src="editar.png" class="pencil" id=${0} name="edit"><img src="borrar.png" class="pencil" id=${0} name="delete"></div></div></div>`;
+    <div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${0}></div><div><img src="descargar.png" class="pencil" name="save" id=${0}><img src="editar.png" class="pencil" id=${0} name="edit"><img src="borrar.png" class="pencil" id=${0} name="delete"></div></div></div>`;
   };
   inputWritePost.value = ''
 });
@@ -88,8 +94,8 @@ printerPost.addEventListener('click', (event) => {
     localStorage.setItem('post', JSON.stringify(arrayToDelete));
     printerPost.innerHTML = '';
     for (let i = 0; i < arrayToDelete.length; i++) {
-      printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readOnly maxlength="151">${arrayToDelete[i]}</textArea>
-<div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
+      printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readOnly maxlength="151">${arrayToDelete[i].text}</textArea>
+<div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
     }
   }
   else if (targetMethod.name == "edit") {
@@ -102,8 +108,8 @@ printerPost.addEventListener('click', (event) => {
   localStorage.setItem('post', JSON.stringify(arrayToEdit));
   printerPost.innerHTML = '';
   for (let i = 0; i < arrayToEdit.length; i++) {
-    printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readOnly maxlength="151">${arrayToEdit[i]}</textArea>
-<div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
+    printerPost.innerHTML += `<div class="card"><textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" readOnly maxlength="151">${arrayToEdit[i].text}</textArea>
+<div class="btn-edit"><div><img src="water-lily.png" class="pencil" id=${i}></div><div><img src="descargar.png" class="pencil" name="save" id=${i}><img src="editar.png" class="pencil" id=${i} name="edit"><img src="borrar.png" class="pencil" id=${i} name="delete"></div></div></div>`
   }}
 });
 
