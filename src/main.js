@@ -12,6 +12,7 @@ const inputFile = document.getElementById('input-file');
 const mailRegisterInput=document.getElementById("register-email");
 
 
+
 linkregistro.addEventListener("click",()=>{
 loggin.classList.add("hide");
 registro.classList.remove("hide");
