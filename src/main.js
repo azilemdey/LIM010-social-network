@@ -8,7 +8,7 @@ const loggin=document.getElementById("loggin");
 const linkregistro=document.getElementById("linkregistro");
 const registro=document.getElementById("registro");
 const btnRegister=document.getElementById("register");
-const inputFile = document.getElementById('input-file');
+const inputFile = document.getElementById('input-file').name;
 
 linkregistro.addEventListener("click",()=>{
 loggin.classList.add("hide");
@@ -53,13 +53,15 @@ inputWritePost.addEventListener('keyup', () => {
 
 botonSavePost.addEventListener('click', () => {
   const textInput = inputWritePost.value;
+  const nameFile =inputFile.files[];
   const obj = {
     text: textInput,
-    img: '',
+    img: nameFile,
     fecha: new Date()
-  
   }
-  if (localStorage.getItem('post') !== null && textInput !== '' ) {
+   
+
+  if (localStorage.getItem('post') !== null && textInput !== ''   ) {
     let arrPostLocalStorage = JSON.parse(localStorage.getItem('post'));
     arr3 = arrPostLocalStorage.slice();
     arr3.push(obj);
@@ -72,7 +74,7 @@ botonSavePost.addEventListener('click', () => {
     };
     inputWritePost.value = ''
   }
-  else if (textInput !== ''  ) {
+  else if (textInput !== '') {
     arrPost.push(obj);
     localStorage.setItem('post', JSON.stringify(arrPost));
     printerPost.innerHTML = `<div class="card"> <textArea class = "template-posts"cols="40" rows="5" width="70%" name="texto" id=text${0} readonly="readonly"  maxlength="151">${arrPost[0].text}</textArea>
@@ -80,6 +82,8 @@ botonSavePost.addEventListener('click', () => {
     <img src = "" ><img src="water-lily.png" class="pencil" id=${0}></div><div><img src="descargar.png" class="pencil hide" name="save" id=${0}><img src="editar.png" class="pencil" id=${0} name="edit"><img src="borrar.png" class="pencil" id=${0} name="delete"></div></div></div>`;
   };
   inputWritePost.value = ''
+
+  console.log(obj);
 });
 
 printerPost.addEventListener('click', (event) => {
@@ -112,10 +116,8 @@ printerPost.addEventListener('click', (event) => {
 
 
 
-inputFile.addEventListener('change', () => {
-  const nameFile =inputFile.files[0].name;
-  const templateSrc= `C:/Users/L-10/Downloads/${nameFile}`
-  alert(templateSrc)});
+
+
   
 
 // const newFunction = () => {
@@ -130,13 +132,9 @@ inputFile.addEventListener('change', () => {
   /*  
 
    const imgFile = () => {
- 
-
 
 
    }
-
-
 
    const previewFile = document.getElementById('input-file')
     previewFile.addEventListener('change', () => {
