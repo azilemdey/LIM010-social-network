@@ -101,7 +101,6 @@ window.onload = () => {
     pintarArray(printer, printerPost);
   }
 };
-
 printerPost.addEventListener('click', (event) => {
   const targetMethod = event.target;
   const arrayIndex = targetMethod.id;
