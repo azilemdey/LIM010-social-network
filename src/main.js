@@ -1,4 +1,9 @@
 
+
+// myFunction();
+
+// Delimitar el tamaño del texto
+
 const loggin = document.getElementById('loggin');
 const linkregistro = document.getElementById("linkregistro");
 const registro = document.getElementById("registro");
@@ -48,6 +53,7 @@ const objPostTexto = {
   src: '',
   fecha: new Date()
 }
+
 const pintarArray = (obj, ele) => {
  let string = '';
 for(let indice = 0; indice < obj.length; indice++){
@@ -56,6 +62,8 @@ string += `<div class="card"><textArea class = "template-posts"cols="40" rows="5
 }
  ele.innerHTML = string;
  }
+
+
 
 /* Asociar el evento de click al padre*/
 sectionPost.addEventListener('click', (e) => {
@@ -71,6 +79,7 @@ sectionPost.addEventListener('click', (e) => {
       localStorage.setItem('post', JSON.stringify(arr3))
       const arrPostLocalStorage1 = getPosts();
       printerPost.innerHTML = '';
+
      pintarArray(arrPostLocalStorage1, printerPost);
       inputWritePost.value = '';
       inputFile.value = '';
@@ -95,8 +104,7 @@ sectionPost.addEventListener('click', (e) => {
 
 });
 
-document.getElementById('input-file').addEventListener('change', () => {
-  
+document.getElementById('input-file').addEventListener('change', () => {  
  
   const file = document.querySelector('input[type=file]').files[0];
   const reader = new FileReader();
@@ -118,7 +126,7 @@ window.onload = () => {
     pintarArray(printer, printerPost);
   }
 };
-
+ 
 printerPost.addEventListener('click', (event) => {
   const targetMethod = event.target;
   const arrayIndex = targetMethod.id;
@@ -127,7 +135,7 @@ printerPost.addEventListener('click', (event) => {
     arrayToDelete.splice(arrayIndex, 1);
     localStorage.setItem('post', JSON.stringify(arrayToDelete));
     printerPost.innerHTML = '';
-    
+
     pintarArray(arrayToDelete, printerPost);
   }
   else if (targetMethod.name == "edit") {
@@ -141,4 +149,5 @@ printerPost.addEventListener('click', (event) => {
     pintarArray(arrayToEdit, printerPost);
   }
 });
+
 
