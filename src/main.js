@@ -38,7 +38,7 @@ inputWritePost.addEventListener('keyup', () => {
   }
 });
 const getPosts = () => JSON.parse(localStorage.getItem('post'));
-const setPosts=(arrayInLs)=>localStorage.setItem('post',JSON.stringify(arrayInLs));
+const setPosts = arrayInLs => localStorage.setItem('post', JSON.stringify(arrayInLs));
 
 const objPostTexto = {
   text: '',
@@ -46,7 +46,7 @@ const objPostTexto = {
   fecha: new Date(),
 };
 const pintarArray = (obj, ele) => {
-  ele.innerHTML = ''
+  ele.innerHTML = '';
   let string = '';
   for (let indice = 0; indice < obj.length; indice++) {
     string += `<div class='card'><textArea class = 'template-posts'cols='40' rows='5' width='70%' name='texto' readOnly maxlength='151'>${obj[indice].text}</textArea> <img src= ${obj[indice].src} class= 'imagen'>
@@ -85,7 +85,7 @@ sectionPost.addEventListener('click', (e) => {
 document.getElementById('input-file').addEventListener('change', () => {
   const file = document.querySelector('input[type=file]').files[0];
   const reader = new FileReader();
-  reader.onloadend = () => { 
+  reader.onloadend = () => {
     preview.src = reader.result;
     objPostTexto.src = reader.result;
   };
