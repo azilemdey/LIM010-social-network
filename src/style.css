@@ -60,11 +60,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 0em;
     position: relative;
     padding: 20px;
     width: 70%;
     max-width: 600px;
+    margin: auto;
  }
  #save-text {
     color: #fff;
