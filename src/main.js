@@ -10,7 +10,6 @@ const inputWritePost = document.getElementById('post');
 const printerPost = document.getElementById('printer-post');
 const texto = document.getElementsByName('texto');
 const sectionPost = document.getElementById('posts');
-const getPosts = () => JSON.parse(localStorage.getItem('post'));
 const preview = document.getElementById('posting-img');
 const arrPost = [];
 
@@ -38,6 +37,8 @@ inputWritePost.addEventListener('keyup', () => {
     inputWritePost.style.color = '#000000';
   }
 });
+const getPosts = () => JSON.parse(localStorage.getItem('post'));
+const setPosts = arrayInLs => localStorage.setItem('post', JSON.stringify(arrayInLs));
 
 const objPostTexto = {
   text: '',
@@ -45,6 +46,7 @@ const objPostTexto = {
   fecha: new Date(),
 };
 const pintarArray = (obj, ele) => {
+  ele.innerHTML = '';
   let string = '';
   for (let indice = 0; indice < obj.length; indice++) {
     string += `<div class='card'><textArea class = 'template-posts'cols='40' rows='5' width='70%' name='texto' readOnly maxlength='151'>${obj[indice].text}</textArea> <img src= ${obj[indice].src} class= 'imagen'>
@@ -63,16 +65,15 @@ sectionPost.addEventListener('click', (e) => {
       const arrPostLocalStorage = getPosts();
       const arr3 = arrPostLocalStorage.slice();
       arr3.push(objPostTexto);
-      localStorage.setItem('post', JSON.stringify(arr3));
+      setPosts(arr3);
       const arrPostLocalStorage1 = getPosts();
-      printerPost.innerHTML = '';
       pintarArray(arrPostLocalStorage1, printerPost);
       inputWritePost.value = '';
       inputFile.value = '';
       preview.src = '';
     } else if (textInput !== '' || inputFile !== '') {
       arrPost.push(objPostTexto);
-      localStorage.setItem('post', JSON.stringify(arrPost));
+      setPosts(arrPost);
       pintarArray(arrPost, printerPost);
     }
     inputWritePost.value = '';
@@ -107,17 +108,14 @@ printerPost.addEventListener('click', (event) => {
   if (targetMethod.name === 'delete') {
     const arrayToDelete = getPosts();
     arrayToDelete.splice(arrayIndex, 1);
-    localStorage.setItem('post', JSON.stringify(arrayToDelete));
-    printerPost.innerHTML = '';
-
+    setPosts(arrayToDelete);
     pintarArray(arrayToDelete, printerPost);
   } else if (targetMethod.name === 'edit') {
     texto[arrayIndex].removeAttribute('readOnly');
   } else if (targetMethod.name === 'save') {
     const arrayToEdit = getPosts();
     arrayToEdit[arrayIndex] = texto[arrayIndex].value;
-    localStorage.setItem('post', JSON.stringify(arrayToEdit));
-    printerPost.innerHTML = '';
+    setPosts(arrayToEdit);
     pintarArray(arrayToEdit, printerPost);
   }
 });
